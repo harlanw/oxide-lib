@@ -1,0 +1,15 @@
+Checks: >
+  bugprone-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-branch-clone,
+  -performance-enum-size,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-named-parameter,
+  -bugprone-macro-parentheses
+WarningsAsErrors: ''
+HeaderFilterRegex: '(^|[/\\])(oxide|tests)[/\\]'
+FormatStyle: file

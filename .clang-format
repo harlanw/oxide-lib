@@ -1,0 +1,83 @@
+# .clang-format (clang-format 21.x) — “rust-ish” readability preset for C/C++
+Language:        Cpp
+BasedOnStyle:    LLVM
+
+# Width / indentation
+ColumnLimit:             100
+IndentWidth:             4
+TabWidth:                4
+UseTab:                  Never
+ContinuationIndentWidth: 4
+NamespaceIndentation:    None
+CompactNamespaces:       false
+IndentCaseLabels:        true
+AccessModifierOffset:    -4
+MaxEmptyLinesToKeep:     1
+KeepEmptyLines:
+  AtStartOfBlock: false
+InsertNewlineAtEOF:      true
+
+# “Rust-like” continuation behavior: prefer block indent over alignment
+AlignAfterOpenBracket:   BlockIndent
+AlignOperands:           DontAlign
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignEscapedNewlines:    DontAlign
+AlignTrailingComments:
+  Kind: Always
+
+# Keep lists inline when they fit within ColumnLimit; otherwise use one item
+# per line, with block indentation and the closing parenthesis on its own line.
+BinPackArguments:        false
+BinPackParameters:       OnePerLine
+BinPackLongBracedList:   false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Avoid one-liners (rustfmt rarely collapses logic into single lines)
+AllowShortBlocksOnASingleLine:        Empty
+AllowShortIfStatementsOnASingleLine:  Never
+AllowShortLoopsOnASingleLine:         false
+AllowShortFunctionsOnASingleLine:     Inline
+AllowShortLambdasOnASingleLine:       Empty
+AllowShortEnumsOnASingleLine:         false
+
+# Braces
+BreakBeforeBraces:       Attach
+
+# Parentheses / spacing
+SpaceBeforeParens:       ControlStatements
+SpacesInParens:          Never
+SpaceAfterCStyleCast:    false
+
+# Pointers/references (closest C++ analogue to Rust’s tight sigils)
+DerivePointerAlignment:  false
+PointerAlignment:        Left
+ReferenceAlignment:      Left
+
+# Breaking & wrapping preferences
+# Prefer breaking call arguments over breaking after '='
+BreakBeforeBinaryOperators: NonAssignment
+BreakBinaryOperations:     RespectPrecedence
+PenaltyBreakAssignment: 1000
+# Break after '=' when keeping a chained call inline would cause deep alignment.
+PenaltyIndentedWhitespace: 100
+PenaltyBreakBeforeFirstCallParameter: 1
+BreakAfterReturnType: Automatic
+# Prefer wrapping parameters before separating the return type from the name.
+PenaltyReturnTypeOnItsOwnLine: 200
+BreakConstructorInitializers: AfterColon
+PackConstructorInitializers:  CurrentLine
+BreakInheritanceList:         AfterColon
+BreakTemplateDeclarations:    Yes
+SeparateDefinitionBlocks:     Leave
+
+# Includes/comments (keep deterministic, avoid “helpful” reshuffles)
+SortIncludes:
+  Enabled: false
+ReflowComments:          Always
+
+WhitespaceSensitiveMacros:
+  - OXIDE_OK
+  - OXIDE_ERR
+  - OXIDE_SOME
